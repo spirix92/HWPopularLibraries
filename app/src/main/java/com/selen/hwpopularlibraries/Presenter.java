@@ -2,9 +2,9 @@ package com.selen.hwpopularlibraries;
 
 public class Presenter {
     private Model mModel;
-    private MainActivity view;
+    private MainView view;
 
-    public Presenter(MainActivity view){
+    public Presenter(MainView view){
         this.mModel = new Model();
         this.view = view;
     }
