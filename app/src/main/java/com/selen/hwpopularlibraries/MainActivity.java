@@ -24,18 +24,29 @@ public class MainActivity extends AppCompatActivity implements MainView, View.On
     }
     @Override
     public void onClick(View v) {
-        mPresenter.buttonClick(v.getId());
+        switch (v.getId()){
+            case R.id.btnCounter1:
+                mPresenter.buttonClick(0);
+                break;
+            case R.id.btnCounter2:
+                mPresenter.buttonClick(1);
+                break;
+            case R.id.btnCounter3:
+                mPresenter.buttonClick(2);
+                break;
+        }
+
     }
     @Override
     public void setButtonText(int btnIndex, int value) {
         switch (btnIndex){
-            case 1:
+            case 0:
                 btnCounter1.setText("Количество = " + value);
                 break;
-            case 2:
+            case 1:
                 btnCounter2.setText("Количество = " + value);
                 break;
-            case 3:
+            case 2:
                 btnCounter3.setText("Количество = " + value);
                 break;
         }
