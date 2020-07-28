@@ -1,26 +1,26 @@
 package com.selen.hwpopularlibraries;
 
-import android.util.Log;
-
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.functions.Function;
-import io.reactivex.rxjava3.observables.ConnectableObservable;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.functions.Function;
+import io.reactivex.observables.ConnectableObservable;
+
 
 public class Model {
     private String text;
     private ConnectableObservable<String> observable;
-    private ObservableEmitter<String> emitter;
 
     public Model() {
         observable = Observable.interval(1, TimeUnit.SECONDS)
                 .map(new Function<Long, String>() {
                     @Override
-                    public String apply(Long aLong) throws Throwable {
-                        Log.d("RX", text);
-                        return text;
+                    public String apply(Long aLong) throws Exception {
+                        return Model.this.text;
+//                        return Model.this.text; - не работает
+//                        return text; - не работает
+//                        return "случайный текст"; - работает
                     }
                 }).publish();
         observable.connect();
