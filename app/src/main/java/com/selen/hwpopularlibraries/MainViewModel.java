@@ -1,5 +1,7 @@
 package com.selen.hwpopularlibraries;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -33,6 +35,7 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onNext(@NonNull String s) {
                 changeText.setValue(s);
+                Log.d("rx", s+ 123456);
             }
 
             @Override

@@ -3,10 +3,8 @@ package com.selen.hwpopularlibraries;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.functions.Function;
 import io.reactivex.observables.ConnectableObservable;
-
 
 public class Model {
     private String text;
@@ -22,7 +20,8 @@ public class Model {
 //                        return text; - не работает
 //                        return "случайный текст"; - работает
                     }
-                }).publish();
+                })
+                .publish();
         observable.connect();
     }
 
