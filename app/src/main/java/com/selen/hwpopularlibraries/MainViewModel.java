@@ -18,8 +18,7 @@ public class MainViewModel extends ViewModel {
     public MainViewModel() {
         model = new Model();
         observerInit();
-        model.getObservable().subscribe(observer);
-//        model.getObservable().observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
+        model.getObservable().observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 
     private void observerInit() {

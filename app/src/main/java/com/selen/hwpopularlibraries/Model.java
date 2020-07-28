@@ -1,29 +1,33 @@
 package com.selen.hwpopularlibraries;
 
-import io.reactivex.rxjava3.annotations.NonNull;
+import android.util.Log;
+
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.core.ObservableOnSubscribe;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.functions.Function;
+import io.reactivex.rxjava3.observables.ConnectableObservable;
 
 public class Model {
     private String text;
-    private Observable<String> observable;
+    private ConnectableObservable<String> observable;
     private ObservableEmitter<String> emitter;
 
     public Model() {
-        observable = Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Throwable {
-                Model.this.emitter = emitter;
-            }
-        });
-//        }).subscribeOn(Schedulers.io());
+        observable = Observable.interval(1, TimeUnit.SECONDS)
+                .map(new Function<Long, String>() {
+                    @Override
+                    public String apply(Long aLong) throws Throwable {
+                        Log.d("RX", text);
+                        return text;
+                    }
+                }).publish();
+        observable.connect();
     }
 
     public void setText(String text) {
         this.text = text;
-        emitter.onNext(text);
     }
 
     public Observable<String> getObservable() {
