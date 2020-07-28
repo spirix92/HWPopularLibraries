@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableEmitter;
 import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Model {
     private String text;
@@ -17,6 +18,7 @@ public class Model {
                 Model.this.emitter = emitter;
             }
         });
+//        }).subscribeOn(Schedulers.io());
     }
 
     public void setText(String text) {

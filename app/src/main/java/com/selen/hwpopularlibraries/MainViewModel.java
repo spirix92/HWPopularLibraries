@@ -3,6 +3,7 @@ package com.selen.hwpopularlibraries;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -18,6 +19,7 @@ public class MainViewModel extends ViewModel {
         model = new Model();
         observerInit();
         model.getObservable().subscribe(observer);
+//        model.getObservable().observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 
     private void observerInit() {
