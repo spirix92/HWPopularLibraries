@@ -22,7 +22,7 @@ public class MainModel {
         this.users = users;
     }
 
-    public Single<List<User>> requestAllUsers(){
+    public Single<List<User>> requestAllUsers() {
         return retrofit.request();
     }
 

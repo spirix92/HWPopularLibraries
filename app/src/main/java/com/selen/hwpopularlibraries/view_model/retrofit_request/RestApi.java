@@ -8,8 +8,6 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 
 public interface RestApi {
-
-    @GET("user")
+    @GET("users")
     Single<List<User>> loadUsers();
-
 }

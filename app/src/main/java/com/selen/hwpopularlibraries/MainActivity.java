@@ -12,17 +12,8 @@ import android.widget.TextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.selen.hwpopularlibraries.model.User;
 import com.selen.hwpopularlibraries.view_model.MainViewModel;
-import com.selen.hwpopularlibraries.view_model.retrofit_request.RestApi;
 
 import java.util.List;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -63,30 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-//        mainViewModel.requestAll();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-        RestApi restApi = retrofit.create(RestApi.class);
-        restApi.loadUsers()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableSingleObserver<List<User>>() {
-                    @Override
-                    public void onSuccess(List<User> users) {
-                        for (User user : users) {
-                            textView.append(user.toString());
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        textView.setText("косарез");
-                        e.printStackTrace();
-                    }
-                });
+        mainViewModel.requestAll();
     }
 
 }
