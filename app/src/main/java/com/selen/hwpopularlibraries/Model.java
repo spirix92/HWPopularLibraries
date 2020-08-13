@@ -7,7 +7,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.observables.ConnectableObservable;
 
 public class Model {
-    private String text;
+    private String text = "";
     private ConnectableObservable<String> observable;
 
     public Model() {
@@ -16,9 +16,6 @@ public class Model {
                     @Override
                     public String apply(Long aLong) throws Exception {
                         return Model.this.text;
-//                        return Model.this.text; - не работает
-//                        return text; - не работает
-//                        return "случайный текст"; - работает
                     }
                 })
                 .publish();

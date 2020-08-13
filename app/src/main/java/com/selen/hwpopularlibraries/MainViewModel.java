@@ -21,8 +21,6 @@ public class MainViewModel extends ViewModel {
     public MainViewModel() {
         model = new Model();
         observerInit();
-        model.getObservable()
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 
     private void observerInit() {
@@ -35,7 +33,6 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onNext(@NonNull String s) {
                 changeText.setValue(s);
-                Log.d("rx", s+ 123456);
             }
 
             @Override
@@ -48,9 +45,20 @@ public class MainViewModel extends ViewModel {
 
             }
         };
+        model.getObservable()
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(observer);
     }
 
     public void setMyText(String text) {
         model.setText(text);
     }
+
+    public void disposeClick() {
+        disposable.dispose();
+    }
+
+    public void observeClick() {
+        observerInit();
+    }
+
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         setContentView(R.layout.activity_main);
         initView();
         observeViewModel();
+        findViewById(R.id.btn_dispose).setOnClickListener(dispose);
+        findViewById(R.id.btn_observe).setOnClickListener(observe);
     }
 
     private void initView() {
@@ -54,4 +57,18 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     public void afterTextChanged(Editable s) {
         viewModel.setMyText(s.toString());
     }
+
+    private View.OnClickListener dispose = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            viewModel.disposeClick();
+        }
+    };
+
+    private View.OnClickListener observe = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            viewModel.observeClick();
+        }
+    };
 }
