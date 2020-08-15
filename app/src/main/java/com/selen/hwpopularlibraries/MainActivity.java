@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
 
         initViewModel();
-
     }
 
     private void initViewModel() {
