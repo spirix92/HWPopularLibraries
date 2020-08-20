@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class RetrofitNetModule {
 
-//    TODO разобраться с возможными утечками памяти
+    //    TODO разобраться с возможными утечками памяти
     private Context context;
 
     @Provides
@@ -34,9 +34,15 @@ public class RetrofitNetModule {
     }
 
     @Provides
-    Single<List<User>> getSingle(Retrofit retrofit) {
+    RestApi getRestApi(Retrofit retrofit) {
         RestApi restAPI = retrofit.create(RestApi.class);
-        return restAPI.loadUsers();
+        return restAPI;
+    }
+
+    @Provides
+    Single<List<User>> getSingle(RestApi restAPI) {
+        Single<List<User>> single = restAPI.loadUsers();
+        return single;
     }
 
     public RetrofitNetModule(Context context) {
