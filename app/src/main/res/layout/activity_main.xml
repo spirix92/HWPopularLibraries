@@ -23,4 +23,16 @@
         android:layout_height="wrap_content"
         tools:hint="Hello World!" />
 
+    <Button
+        android:id="@+id/btn_observe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="observe"/>
+
+    <Button
+        android:id="@+id/btn_dispose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dispose"/>
+
 </LinearLayout>
